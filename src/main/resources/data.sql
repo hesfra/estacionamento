@@ -1,0 +1,1 @@
+INSERT INTO estacionamento (cnpj, endereço, nome, quantidade_carros, quantidade_motos, telefone) VALUES('1222','rua tucanos','chestacionamento',2,3,22222)
