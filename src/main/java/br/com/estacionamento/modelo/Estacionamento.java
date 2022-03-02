@@ -10,35 +10,30 @@ public class Estacionamento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
-    private String CNPJ;
+    private String cnpj;
     @NotNull
-    private String Endereço;
+    private String endereco;
     @NotNull
-    private String Telefone;
+    private String telefone;
     @NotNull
-    private int QuantidadeCarros;
+    private int quantidadeCarros;
     @NotNull
-    private int QuantidadeMotos;
+    private int quantidadeMotos;
     @NotNull
-    private String Nome;
+    private String nome;
 
     public Estacionamento() {
     }
 
-    public Estacionamento(Estacionamento estacionamento) {
-
-    }
-
-    public Estacionamento(Long id, String CNPJ, String endereço, String telefone, int quantidadeCarros, int quantidadeMotos, String nome) {
+    public Estacionamento(Long id, String cnpj, String endereco, String telefone, int quantidadeCarros, int quantidadeMotos, String nome) {
         this.id = id;
-        this.CNPJ = CNPJ;
-        this.Endereço = endereço;
-        this.Telefone = telefone;
-        this.QuantidadeCarros = quantidadeCarros;
-        this.QuantidadeMotos = quantidadeMotos;
-        this.Nome = nome;
+        this.cnpj = cnpj;
+        this.endereco = endereco;
+        this.telefone = telefone;
+        this.quantidadeCarros = quantidadeCarros;
+        this.quantidadeMotos = quantidadeMotos;
+        this.nome = nome;
     }
-
 
     public Long getId() {
         return id;
@@ -48,51 +43,51 @@ public class Estacionamento {
         this.id = id;
     }
 
-    public String getCNPJ() {
-        return CNPJ;
+    public String getCnpj() {
+        return cnpj;
     }
 
-    public void setCNPJ(String CNPJ) {
-        this.CNPJ = CNPJ;
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
     }
 
-    public String getEndereço() {
-        return Endereço;
+    public String getendereco() {
+        return endereco;
     }
 
-    public void setEndereço(String endereço) {
-        this.Endereço = endereço;
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
 
     public String getTelefone() {
-        return Telefone;
+        return telefone;
     }
 
     public void setTelefone(String telefone) {
-        this.Telefone = telefone;
+        this.telefone = telefone;
     }
 
     public int getQuantidadeCarros() {
-        return QuantidadeCarros;
+        return quantidadeCarros;
     }
 
     public void setQuantidadeCarros(int quantidadeCarros) {
-        this.QuantidadeCarros = quantidadeCarros;
+        this.quantidadeCarros = quantidadeCarros;
     }
 
     public int getQuantidadeMotos() {
-        return QuantidadeMotos;
+        return quantidadeMotos;
     }
 
     public void setQuantidadeMotos(int quantidadeMotos) {
-        this.QuantidadeMotos = quantidadeMotos;
+        this.quantidadeMotos = quantidadeMotos;
     }
 
     public String getNome() {
-        return Nome;
+        return nome;
     }
 
     public void setNome(String nome) {
-        this.Nome = nome;
+        this.nome = nome;
     }
 }

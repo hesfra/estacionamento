@@ -25,12 +25,7 @@ public class controllerEstacionamento {
     @Autowired
     private VeiculosRepository veiculosRepository;
 
-    //@GetMapping
-    //public class EstacionamentoRepository{
 
-    //}
-
-    ;
 
     @GetMapping
     public List<Estacionamento> lista(String nome) {
@@ -42,12 +37,12 @@ public class controllerEstacionamento {
     @Transactional
 
     public ResponseEntity<Estacionamento> cadastrar(@RequestBody Estacionamento Estacionamento, UriComponentsBuilder  uriBuilder){
-        System.out.println(Estacionamento);
-        EstacionamentoRepository.save(Estacionamento);
+
+        Estacionamento est = EstacionamentoRepository.save(Estacionamento);
 
 
             URI uri = uriBuilder.path("/estacionamento/{id}").buildAndExpand(Estacionamento.getId()).toUri();
-            return ResponseEntity.created(uri).body(new Estacionamento(Estacionamento));
+            return ResponseEntity.created(uri).body(est);
 
 
     }
