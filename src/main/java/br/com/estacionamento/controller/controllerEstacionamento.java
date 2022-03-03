@@ -11,6 +11,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.persistence.Id;
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -36,7 +37,7 @@ public class controllerEstacionamento {
     @PostMapping
     @Transactional
 
-    public ResponseEntity<Estacionamento> cadastrar(@RequestBody Estacionamento Estacionamento, UriComponentsBuilder  uriBuilder){
+    public ResponseEntity<Estacionamento> cadastrar(@RequestBody @Valid Estacionamento Estacionamento, UriComponentsBuilder  uriBuilder){
 
         Estacionamento est = EstacionamentoRepository.save(Estacionamento);
 

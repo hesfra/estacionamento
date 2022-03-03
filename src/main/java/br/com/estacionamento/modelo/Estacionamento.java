@@ -1,8 +1,10 @@
 package br.com.estacionamento.modelo;
 
-import com.sun.istack.NotNull;
+
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Estacionamento {
@@ -10,16 +12,17 @@ public class Estacionamento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
+    @NotEmpty
     private String cnpj;
-    @NotNull
+    @NotNull @NotEmpty
     private String endereco;
-    @NotNull
+    @NotNull    @NotEmpty
     private String telefone;
     @NotNull
     private int quantidadeCarros;
     @NotNull
     private int quantidadeMotos;
-    @NotNull
+    @NotNull    @NotEmpty
     private String nome;
 
     public Estacionamento() {
