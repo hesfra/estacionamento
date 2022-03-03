@@ -1,7 +1,5 @@
 package br.com.estacionamento.modelo;
 
-
-
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -29,6 +27,7 @@ public class Estacionamento {
     }
 
     public Estacionamento(Long id, String cnpj, String endereco, String telefone, int quantidadeCarros, int quantidadeMotos, String nome) {
+
         this.id = id;
         this.cnpj = cnpj;
         this.endereco = endereco;

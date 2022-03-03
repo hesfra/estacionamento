@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -27,26 +28,32 @@ public class controllerEstacionamento {
     private VeiculosRepository veiculosRepository;
 
 
-
     @GetMapping
     public List<Estacionamento> lista(String nome) {
         List<Estacionamento> Estacionamentos = EstacionamentoRepository.findAll();
-            return Estacionamentos;
+        System.out.println(Estacionamentos);
+        return Estacionamentos;
     }
 
     @PostMapping
     @Transactional
 
-    public ResponseEntity<Estacionamento> cadastrar(@RequestBody @Valid Estacionamento Estacionamento, UriComponentsBuilder  uriBuilder){
+    public ResponseEntity<Estacionamento> cadastrar(@RequestBody @Valid Estacionamento Estacionamento, UriComponentsBuilder uriBuilder) {
 
         Estacionamento est = EstacionamentoRepository.save(Estacionamento);
 
 
-            URI uri = uriBuilder.path("/estacionamento/{id}").buildAndExpand(Estacionamento.getId()).toUri();
-            return ResponseEntity.created(uri).body(est);
-
-
+        URI uri = uriBuilder.path("/estacionamento/{id}").buildAndExpand(Estacionamento.getId()).toUri();
+        return ResponseEntity.created(uri).body(est);
     }
+
+    @GetMapping("/{id}")
+    public Estacionamento detalhar(@PathVariable Long id){
+        Estacionamento estacionamentoById = EstacionamentoRepository.getById(id);
+        System.out.println(estacionamentoById);
+        return new Estacionamento() ;
+    }
+
 
     }
 
