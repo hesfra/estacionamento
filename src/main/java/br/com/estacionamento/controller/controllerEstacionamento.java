@@ -15,6 +15,7 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping ("/estacionamento")
@@ -47,14 +48,12 @@ public class controllerEstacionamento {
         return ResponseEntity.created(uri).body(est);
     }
 
-    @GetMapping("/{id}")
-    public Estacionamento detalhar(@PathVariable Long id){
-        Estacionamento estacionamentoById = EstacionamentoRepository.getById(id);
-        System.out.println(estacionamentoById);
-        return new Estacionamento() ;
-    }
-
-
+        @GetMapping("/{id}")
+        public Optional<Estacionamento> detalhar(@PathVariable Long id){
+            Optional<Estacionamento> estacionamentoById = EstacionamentoRepository.findById(id);
+            System.out.println(estacionamentoById);
+            return estacionamentoById ;
+        }
     }
 
 
