@@ -5,7 +5,6 @@ import br.com.estacionamento.form.AtualizacaoEstacionamento;
 import br.com.estacionamento.modelo.Estacionamento;
 import br.com.estacionamento.repository.EstacionamentoRepository;
 import br.com.estacionamento.repository.VeiculosRepository;
-import net.bytebuddy.dynamic.DynamicType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,9 +23,6 @@ public class controllerEstacionamento {
 
     @Autowired
     private EstacionamentoRepository EstacionamentoRepository;
-
-    @Autowired
-    private VeiculosRepository veiculosRepository;
 
 
     @GetMapping
@@ -54,12 +50,12 @@ public class controllerEstacionamento {
             System.out.println(estacionamentoById);
             return estacionamentoById ;
         }
-        @PutMapping("/{id}")
-        @Transactional
-        public ResponseEntity<Optional<Estacionamento>> atualizar(@PathVariable Long id, @RequestBody @Valid AtualizacaoEstacionamento form){
-            Optional<Estacionamento> estacionamentoatt = form.atualizar(id, EstacionamentoRepository);
-                return ResponseEntity.ok(estacionamentoatt);
-        }
+//        @PutMapping("/{id}")
+//        @Transactional
+//        public ResponseEntity<Estacionamento> atualizar(@PathVariable Long id, @RequestBody @Valid AtualizacaoEstacionamento form){
+//            Optional<Estacionamento> estacionamentoatt = form.atualizar(id, EstacionamentoRepository);
+//                return ResponseEntity.ok(Optional<new Estacionamento(estacionamentoatt)>);
+       // }
 }
 
 

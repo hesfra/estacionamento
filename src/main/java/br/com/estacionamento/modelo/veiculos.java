@@ -11,57 +11,61 @@ public class veiculos {
     @Column(nullable = false, updatable = false)
     private Long id;
     @NotNull
-    private String Marca;
+    private String marca;
     @NotNull
-    private String Modelo;
+    private String modelo;
     @NotNull
-    private String Cor;
+    private String cor;
     @NotNull
-    private String Placa;
+    private String placa;
     @NotNull
-    private String Tipo;
+    private String tipo;
 
     public Long getId() {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getMarca() {
-        return Marca;
+        return marca;
     }
 
     public void setMarca(String marca) {
-        Marca = marca;
+        this.marca = marca;
     }
 
     public String getModelo() {
-        return Modelo;
+        return modelo;
     }
 
     public void setModelo(String modelo) {
-        Modelo = modelo;
+        this.modelo = modelo;
     }
 
     public String getCor() {
-        return Cor;
+        return cor;
     }
 
     public void setCor(String cor) {
-        Cor = cor;
+        this.cor = cor;
     }
 
     public String getPlaca() {
-        return Placa;
+        return placa;
     }
 
     public void setPlaca(String placa) {
-        Placa = placa;
+        this.placa = placa;
     }
 
     public String getTipo() {
-        return Tipo;
+        return tipo;
     }
 
     public void setTipo(String tipo) {
-        Tipo = tipo;
+        this.tipo = tipo;
     }
 }
