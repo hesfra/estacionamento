@@ -49,47 +49,46 @@ public class Estacionamento {
         return cnpj;
     }
 
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
+    public static void setCnpj(String cnpj) {
+        cnpj = cnpj;
     }
 
     public String getendereco() {
         return endereco;
     }
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
+    public static void setEndereco(String endereco) {
+        endereco = endereco;
     }
 
     public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public static void setTelefone(String telefone) {
+        telefone = telefone;
     }
 
     public int getQuantidadeCarros() {
         return quantidadeCarros;
     }
 
-    public void setQuantidadeCarros(int quantidadeCarros) {
-        this.quantidadeCarros = quantidadeCarros;
+    public static void setQuantidadeCarros(int quantidadeCarros) {
+        quantidadeCarros = quantidadeCarros;
     }
 
     public int getQuantidadeMotos() {
         return quantidadeMotos;
     }
 
-    public void setQuantidadeMotos(int quantidadeMotos) {
-        this.quantidadeMotos = quantidadeMotos;
+    public static void setQuantidadeMotos(int quantidadeMotos) {quantidadeMotos = quantidadeMotos;
     }
 
     public String getNome() {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public static void setNome(String nome) {
+        nome = nome;
     }
 }
