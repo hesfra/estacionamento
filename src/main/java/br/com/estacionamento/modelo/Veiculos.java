@@ -1,11 +1,13 @@
 package br.com.estacionamento.modelo;
 
+import br.com.estacionamento.repository.EstacionamentoRepository;
+import br.com.estacionamento.repository.VeiculosRepository;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 
 @Entity
-public class veiculos {
+public class Veiculos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, updatable = false)
@@ -68,4 +70,11 @@ public class veiculos {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+    public Veiculos update(Long id, VeiculosRepository veiculosRepository){
+        if(veiculosRepository.existsById(id)){
+            this.setId(id);
+            veiculosRepository.save(this);
+        }return this;
+
+}
 }

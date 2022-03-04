@@ -1,10 +1,9 @@
 package br.com.estacionamento.controller;
 
 
-import br.com.estacionamento.form.AtualizacaoEstacionamento;
+
 import br.com.estacionamento.modelo.Estacionamento;
 import br.com.estacionamento.repository.EstacionamentoRepository;
-import br.com.estacionamento.repository.VeiculosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +25,7 @@ public class controllerEstacionamento {
 
 
     @GetMapping
-    public List<Estacionamento> lista(String nome) {
+    public List<Estacionamento> get (String nome) {
         List<Estacionamento> Estacionamentos = EstacionamentoRepository.findAll();
         System.out.println(Estacionamentos);
         return Estacionamentos;
@@ -35,7 +34,7 @@ public class controllerEstacionamento {
     @PostMapping
     @Transactional
 
-    public ResponseEntity<Estacionamento> cadastrar(@RequestBody @Valid Estacionamento Estacionamento, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<Estacionamento> post(@RequestBody @Valid Estacionamento Estacionamento, UriComponentsBuilder uriBuilder) {
 
         Estacionamento est = EstacionamentoRepository.save(Estacionamento);
 
@@ -45,17 +44,17 @@ public class controllerEstacionamento {
     }
 
         @GetMapping("/{id}")
-        public Optional<Estacionamento> detalhar(@PathVariable Long id){
+        public Optional<Estacionamento> getById(@PathVariable Long id){
             Optional<Estacionamento> estacionamentoById = EstacionamentoRepository.findById(id);
             System.out.println(estacionamentoById);
             return estacionamentoById ;
         }
-//        @PutMapping("/{id}")
-//        @Transactional
-//        public ResponseEntity<Estacionamento> atualizar(@PathVariable Long id, @RequestBody @Valid AtualizacaoEstacionamento form){
-//            Optional<Estacionamento> estacionamentoatt = form.atualizar(id, EstacionamentoRepository);
-//                return ResponseEntity.ok(Optional<new Estacionamento(estacionamentoatt)>);
-       // }
+        @PutMapping("/{id}")
+        @Transactional
+        public ResponseEntity<Estacionamento> update(@PathVariable Long id, @RequestBody @Valid Estacionamento updateEstacionamento){
+            Estacionamento estacionamentoatt = updateEstacionamento.update(id,EstacionamentoRepository);
+                return ResponseEntity.ok(estacionamentoatt);
+        }
 }
 
 

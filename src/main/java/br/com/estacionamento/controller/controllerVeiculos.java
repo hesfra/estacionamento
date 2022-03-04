@@ -1,8 +1,6 @@
 package br.com.estacionamento.controller;
 
-
-import br.com.estacionamento.modelo.Estacionamento;
-import br.com.estacionamento.modelo.veiculos;
+import br.com.estacionamento.modelo.Veiculos;
 import br.com.estacionamento.repository.VeiculosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,29 +21,36 @@ public class controllerVeiculos {
 
 
     @Autowired
-    private VeiculosRepository veiculosRepository;
+    private VeiculosRepository VeiculosRepository;
 
 
     @GetMapping
-    public List<veiculos> Lista(String nome) {
-        List<veiculos> veiculos = veiculosRepository.findAll();
+    public List<Veiculos> get (String nome) {
+        List<Veiculos> veiculos = VeiculosRepository.findAll();
         return veiculos;
 
     }
     @PostMapping
     @Transactional
 
-    public ResponseEntity<veiculos> cadastrar(@RequestBody @Valid veiculos veiculos, UriComponentsBuilder uriBuilder) {
-        veiculos vei = veiculosRepository.save(veiculos);
+    public ResponseEntity<Veiculos> post (@RequestBody @Valid Veiculos veiculos, UriComponentsBuilder uriBuilder) {
+        Veiculos vei = VeiculosRepository.save(veiculos);
             URI uri = uriBuilder.path("/veiculos/{id}").buildAndExpand(veiculos.getId()).toUri();
                  return ResponseEntity.created(uri).body(vei);
     }
     @GetMapping("/{id}")
-    public Optional<veiculos> detalhar(@PathVariable Long id){
-        Optional<veiculos> veiculosById = veiculosRepository.findById(id);
+    public Optional<Veiculos> getById (@PathVariable Long id){
+        Optional<Veiculos> veiculosById = VeiculosRepository.findById(id);
             return veiculosById;
         }
 
+    @PutMapping("/{id}")
+    @Transactional
+    public ResponseEntity<Veiculos> update (@PathVariable Long id, @RequestBody @Valid Veiculos updateVeiculos){
+        Veiculos veiculosatt = updateVeiculos.update(id,VeiculosRepository);
+
+        return ResponseEntity.ok(veiculosatt);
+    }
 
 
 

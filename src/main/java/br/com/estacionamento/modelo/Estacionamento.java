@@ -1,5 +1,7 @@
 package br.com.estacionamento.modelo;
 
+import br.com.estacionamento.repository.EstacionamentoRepository;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -49,46 +51,60 @@ public class Estacionamento {
         return cnpj;
     }
 
-    public static void setCnpj(String cnpj) {
-        cnpj = cnpj;
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
     }
 
-    public String getendereco() {
+    public String getEndereco() {
         return endereco;
     }
 
-    public static void setEndereco(String endereco) {
-        endereco = endereco;
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
 
     public String getTelefone() {
         return telefone;
     }
 
-    public static void setTelefone(String telefone) {
-        telefone = telefone;
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
     public int getQuantidadeCarros() {
         return quantidadeCarros;
     }
 
-    public static void setQuantidadeCarros(int quantidadeCarros) {
-        quantidadeCarros = quantidadeCarros;
+    public void setQuantidadeCarros(int quantidadeCarros) {
+        this.quantidadeCarros = quantidadeCarros;
     }
 
     public int getQuantidadeMotos() {
         return quantidadeMotos;
     }
 
-    public static void setQuantidadeMotos(int quantidadeMotos) {quantidadeMotos = quantidadeMotos;
+    public void setQuantidadeMotos(int quantidadeMotos) {
+        this.quantidadeMotos = quantidadeMotos;
     }
 
     public String getNome() {
         return nome;
     }
 
-    public static void setNome(String nome) {
-        nome = nome;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
+
+//método update
+
+    public Estacionamento update(Long id, EstacionamentoRepository estacionamentoRepository){
+        if(estacionamentoRepository.existsById(id)){
+            this.setId(id);
+            estacionamentoRepository.save(this);
+        }return this;
+
+
+    }
+
+
 }
