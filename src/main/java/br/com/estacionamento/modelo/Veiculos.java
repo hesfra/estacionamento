@@ -70,11 +70,13 @@ public class Veiculos {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-    public Veiculos update(Long id, VeiculosRepository veiculosRepository){
-        if(veiculosRepository.existsById(id)){
+
+    public Veiculos update(Long id, VeiculosRepository veiculosRepository) {
+        if (veiculosRepository.existsById(id)) {
             this.setId(id);
             veiculosRepository.save(this);
-        }return this;
+        }
+        return this;
 
-}
+    }
 }

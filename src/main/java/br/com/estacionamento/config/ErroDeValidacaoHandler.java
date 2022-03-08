@@ -21,15 +21,15 @@ public class ErroDeValidacaoHandler {
 
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public List<ErroEstacionamento> handle(MethodArgumentNotValidException exception){
-            List<ErroEstacionamento> erro = new ArrayList<>();
+    public List<ErroEstacionamento> handle(MethodArgumentNotValidException exception) {
+        List<ErroEstacionamento> erro = new ArrayList<>();
 
-            List<FieldError> fieldErrors =  exception.getBindingResult().getFieldErrors();
-            fieldErrors.forEach(e -> {
-                String mensagem = messageSource.getMessage(e, LocaleContextHolder.getLocale());
-                ErroEstacionamento error = new ErroEstacionamento(e.getField(),mensagem);
+        List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
+        fieldErrors.forEach(e -> {
+            String mensagem = messageSource.getMessage(e, LocaleContextHolder.getLocale());
+            ErroEstacionamento error = new ErroEstacionamento(e.getField(), mensagem);
             erro.add(error);
-            });
-                return erro;
+        });
+        return erro;
     }
 }

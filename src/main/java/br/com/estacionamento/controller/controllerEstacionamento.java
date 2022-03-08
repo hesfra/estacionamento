@@ -1,7 +1,6 @@
 package br.com.estacionamento.controller;
 
 
-
 import br.com.estacionamento.modelo.Estacionamento;
 import br.com.estacionamento.repository.EstacionamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping ("/estacionamento")
+@RequestMapping("/estacionamento")
 public class controllerEstacionamento {
 
 
@@ -25,7 +24,7 @@ public class controllerEstacionamento {
 
 
     @GetMapping
-    public List<Estacionamento> get (String nome) {
+    public List<Estacionamento> get(String nome) {
         List<Estacionamento> Estacionamentos = EstacionamentoRepository.findAll();
         System.out.println(Estacionamentos);
         return Estacionamentos;
@@ -43,18 +42,25 @@ public class controllerEstacionamento {
         return ResponseEntity.created(uri).body(est);
     }
 
-        @GetMapping("/{id}")
-        public Optional<Estacionamento> getById(@PathVariable Long id){
-            Optional<Estacionamento> estacionamentoById = EstacionamentoRepository.findById(id);
-            System.out.println(estacionamentoById);
-            return estacionamentoById ;
+    @GetMapping("/{id}")
+    public Optional<Estacionamento> getById(@PathVariable Long id) {
+        Optional<Estacionamento> estacionamentoById = EstacionamentoRepository.findById(id);
+        return estacionamentoById;
+    }
+
+    @PutMapping("/{id}")
+    @Transactional
+    public ResponseEntity<Estacionamento> update(@PathVariable Long id, @RequestBody @Valid Estacionamento updateEstacionamento) {
+        Estacionamento estacionamentoatt = updateEstacionamento.update(id, EstacionamentoRepository);
+        return ResponseEntity.ok(estacionamentoatt);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteById(@PathVariable Long id) {
+        if (EstacionamentoRepository.existsById(id)) {
+            EstacionamentoRepository.deleteById(id);
         }
-        @PutMapping("/{id}")
-        @Transactional
-        public ResponseEntity<Estacionamento> update(@PathVariable Long id, @RequestBody @Valid Estacionamento updateEstacionamento){
-            Estacionamento estacionamentoatt = updateEstacionamento.update(id,EstacionamentoRepository);
-                return ResponseEntity.ok(estacionamentoatt);
-        }
+    }
 }
 
 

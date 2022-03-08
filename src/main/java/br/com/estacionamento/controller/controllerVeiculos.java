@@ -15,9 +15,8 @@ import java.util.Optional;
 
 
 @RestController
-@RequestMapping ("/veiculos")
+@RequestMapping("/veiculos")
 public class controllerVeiculos {
-
 
 
     @Autowired
@@ -25,34 +24,41 @@ public class controllerVeiculos {
 
 
     @GetMapping
-    public List<Veiculos> get (String nome) {
+    public List<Veiculos> get(String nome) {
         List<Veiculos> veiculos = VeiculosRepository.findAll();
         return veiculos;
 
     }
+
     @PostMapping
     @Transactional
 
-    public ResponseEntity<Veiculos> post (@RequestBody @Valid Veiculos veiculos, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<Veiculos> post(@RequestBody @Valid Veiculos veiculos, UriComponentsBuilder uriBuilder) {
         Veiculos vei = VeiculosRepository.save(veiculos);
-            URI uri = uriBuilder.path("/veiculos/{id}").buildAndExpand(veiculos.getId()).toUri();
-                 return ResponseEntity.created(uri).body(vei);
+        URI uri = uriBuilder.path("/veiculos/{id}").buildAndExpand(veiculos.getId()).toUri();
+        return ResponseEntity.created(uri).body(vei);
     }
+
     @GetMapping("/{id}")
-    public Optional<Veiculos> getById (@PathVariable Long id){
+    public Optional<Veiculos> getById(@PathVariable Long id) {
         Optional<Veiculos> veiculosById = VeiculosRepository.findById(id);
-            return veiculosById;
-        }
+        return veiculosById;
+    }
 
     @PutMapping("/{id}")
     @Transactional
-    public ResponseEntity<Veiculos> update (@PathVariable Long id, @RequestBody @Valid Veiculos updateVeiculos){
-        Veiculos veiculosatt = updateVeiculos.update(id,VeiculosRepository);
+    public ResponseEntity<Veiculos> update(@PathVariable Long id, @RequestBody @Valid Veiculos updateVeiculos) {
+        Veiculos veiculosatt = updateVeiculos.update(id, VeiculosRepository);
 
         return ResponseEntity.ok(veiculosatt);
     }
 
-
+    @DeleteMapping("/{id}")
+    public void deleteById(@PathVariable Long id) {
+        if (VeiculosRepository.existsById(id)) {
+            VeiculosRepository.deleteById(id);
+        }
+    }
 
 
 }

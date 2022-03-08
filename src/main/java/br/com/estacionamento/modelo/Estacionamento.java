@@ -1,6 +1,7 @@
 package br.com.estacionamento.modelo;
 
 import br.com.estacionamento.repository.EstacionamentoRepository;
+import org.springframework.http.ResponseEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -14,15 +15,18 @@ public class Estacionamento {
     @NotNull
     @NotEmpty
     private String cnpj;
-    @NotNull @NotEmpty
+    @NotNull
+    @NotEmpty
     private String endereco;
-    @NotNull    @NotEmpty
+    @NotNull
+    @NotEmpty
     private String telefone;
     @NotNull
     private int quantidadeCarros;
     @NotNull
     private int quantidadeMotos;
-    @NotNull    @NotEmpty
+    @NotNull
+    @NotEmpty
     private String nome;
 
     public Estacionamento() {
@@ -97,14 +101,14 @@ public class Estacionamento {
 
 //método update
 
-    public Estacionamento update(Long id, EstacionamentoRepository estacionamentoRepository){
-        if(estacionamentoRepository.existsById(id)){
+    public Estacionamento update(Long id, EstacionamentoRepository estacionamentoRepository) {
+        if (estacionamentoRepository.existsById(id)) {
             this.setId(id);
             estacionamentoRepository.save(this);
-        }return this;
+        }
+        return this;
 
 
     }
-
-
 }
+

@@ -2,8 +2,8 @@ package br.com.estacionamento.config;
 
 public class ErroEstacionamento {
 
-    private String campo;
-    private String erro;
+    private final String campo;
+    private final String erro;
 
     public ErroEstacionamento(String campo, String erro) {
         this.campo = campo;
